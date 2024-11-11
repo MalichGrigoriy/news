@@ -6,9 +6,9 @@ import kotlinx.serialization.SerialName
 import java.util.Date
 
 @Serializable
-data class Article(
+data class ArticleDTO(
 
-    @SerialName("source") var source: Source? = Source(),
+    @SerialName("source") var source: SourceDTO? = SourceDTO(),
     @SerialName("author") var author: String? = null,
     @SerialName("title") var title: String? = null,
     @SerialName("description") var description: String? = null,

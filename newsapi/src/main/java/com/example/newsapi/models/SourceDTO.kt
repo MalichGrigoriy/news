@@ -5,7 +5,7 @@ import kotlinx.serialization.SerialName
 
 
 @Serializable
-data class Source(
+data class SourceDTO(
 
     @SerialName("id") var id: String? = null,
     @SerialName("name") var name: String? = null
