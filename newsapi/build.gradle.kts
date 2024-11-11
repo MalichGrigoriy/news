@@ -1,3 +1,4 @@
+
 plugins {
     id("java-library")
     alias(libs.plugins.jetbrains.kotlin.jvm)
@@ -9,8 +10,11 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-dependencies{
+dependencies {
     implementation(libs.retrofit)
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.annotation)
+    implementation(libs.retrofit.serialization.kotlinx)
+    implementation(libs.retrofit.result.adapter)
 }
