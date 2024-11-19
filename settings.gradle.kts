@@ -23,4 +23,5 @@ rootProject.name = "NewsSearch"
 include(":app")
 include(":newsapi")
 include(":database")
-include(":news-main")
+include("features:news-main")
+include(":data")
