@@ -2,28 +2,26 @@ package com.example.features.news_main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.data.ArticlesRepository
 import com.example.data.RequestResult
-import com.example.data.model.Article
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import javax.inject.Inject
+import javax.inject.Provider
 
-
-internal class NewsMainViewModel(
-    private val getAllArticlesUseCase: GetAllArticlesUseCase
+@HiltViewModel
+internal class NewsMainViewModel @Inject constructor(
+    getAllArticlesUseCase: Provider<GetAllArticlesUseCase>
 ) : ViewModel() {
 
-    val state: StateFlow<State> = getAllArticlesUseCase.invoke()
+    val state: StateFlow<State> = getAllArticlesUseCase.get().invoke()
         .map { it.toSate() }
         .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
 
     fun forceUpdate() {
-        getAllArticlesUseCase.fetchLatest()
+//        getAllArticlesUseCase.fetchLatest()
     }
 }
 

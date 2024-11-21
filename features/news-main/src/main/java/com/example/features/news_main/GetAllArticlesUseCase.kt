@@ -8,8 +8,9 @@ import com.example.data.model.Article
 import com.example.data.model.toArticleDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class GetAllArticlesUseCase(private val repository: ArticlesRepository) {
+class GetAllArticlesUseCase @Inject constructor(private val repository: ArticlesRepository) {
 
     operator fun invoke(): Flow<RequestResult<List<ArticleUI>>> {
         return repository.getAll().map { requestResult: RequestResult<List<Article>> ->
