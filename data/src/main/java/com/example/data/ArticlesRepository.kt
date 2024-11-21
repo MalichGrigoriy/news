@@ -9,6 +9,7 @@ import com.example.database.models.ArticleDBO
 import com.example.newsapi.NewsApi
 import com.example.newsapi.models.ArticleDTO
 import com.example.newsapi.models.ResponseDTO
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
@@ -19,9 +20,8 @@ import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
-import kotlin.reflect.KSuspendFunction2
 
-class ArticlesRepository(
+class ArticlesRepository @Inject constructor(
     private val database: NewsDataBase,
     private val api: NewsApi
 ) {

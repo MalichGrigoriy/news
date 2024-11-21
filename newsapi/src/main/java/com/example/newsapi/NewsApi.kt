@@ -35,8 +35,9 @@ fun NewsApi(
     baseUrl: String,
     apiKey: String,
     okHttpClient: OkHttpClient? = null,
+    json: Json = Json
 ): NewsApi {
-    val retrofit = retrofit(baseUrl, apiKey, okHttpClient)
+    val retrofit = retrofit(baseUrl, apiKey, okHttpClient, json)
     return retrofit.create()
 }
 
@@ -44,6 +45,7 @@ internal fun retrofit(
     baseUrl: String,
     apiKey: String,
     okHttpClient: OkHttpClient? = null,
+    json: Json
 ): Retrofit {
     val contentType = MediaType.get("application/json")
     val httpClient = (okHttpClient?.newBuilder() ?: OkHttpClient.Builder())
@@ -52,7 +54,7 @@ internal fun retrofit(
 
     return Retrofit.Builder()
         .baseUrl(baseUrl)
-        .addConverterFactory(Json.asConverterFactory(contentType))
+        .addConverterFactory(json.asConverterFactory(contentType))
         .addCallAdapterFactory(ResultCallAdapterFactory.create())
         .client(httpClient)
         .build()
