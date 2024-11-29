@@ -1,19 +1,17 @@
 package com.example.features.news_main
 
 import com.example.data.ArticlesRepository
-import com.example.data.ArticlesRepositoryGreg
 import com.example.data.RequestResult
 import com.example.data.copy
 import com.example.data.model.Article
-import com.example.data.model.toArticleDTO
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class GetAllArticlesUseCase @Inject constructor(private val repository: ArticlesRepository) {
+internal class GetAllArticlesUseCase @Inject constructor(private val repository: ArticlesRepository) {
 
-    operator fun invoke(): Flow<RequestResult<List<ArticleUI>>> {
-        return repository.getAll().map { requestResult: RequestResult<List<Article>> ->
+    operator fun invoke(query: String): Flow<RequestResult<List<ArticleUI>>> {
+        return repository.getAll(query).map { requestResult: RequestResult<List<Article>> ->
             requestResult.copy { article: List<Article> ->
                 article.map { it.toArticleUI() }
             }
@@ -26,6 +24,11 @@ class GetAllArticlesUseCase @Inject constructor(private val repository: Articles
 }
 
 private fun Article.toArticleUI(): ArticleUI {
-    TODO("Not yet implemented")
+    return ArticleUI(
+        id = this.cacheId,
+        title = this.title,
+        description = this.description,
+        imageUrl = this.urlToImage,
+        url = this.url,
+    )
 }
-

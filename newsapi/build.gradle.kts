@@ -13,8 +13,12 @@ java {
 dependencies {
     implementation(libs.retrofit)
     implementation(libs.kotlinx.coroutines.core)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.annotation)
     implementation(libs.retrofit.serialization.kotlinx)
     implementation(libs.retrofit.result.adapter)
+    api(libs.kotlinx.serialization.json)
+    api(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+
+    testImplementation(libs.junit)
 }

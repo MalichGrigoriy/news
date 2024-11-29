@@ -14,7 +14,7 @@ class NewsDataBase internal constructor(private val dataBase: NewsRoomDataBase) 
         get() = dataBase.articlesDao()
 }
 
-@Database(entities = [ArticleDBO::class], version = 1, exportSchema = false)
+@Database(entities = [ArticleDBO::class], version = 1, exportSchema = false )
 @TypeConverters(Converters::class)
 internal abstract class NewsRoomDataBase : RoomDatabase() {
     abstract fun articlesDao(): ArticleDAO

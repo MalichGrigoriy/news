@@ -22,8 +22,8 @@ android {
             useSupportLibrary = true
         }
 
-        buildConfigField("String", "NEWS_API_KEY", "\"\"")
-        buildConfigField("String", "NEWS_API_BASE_URL", "\"\"")
+        buildConfigField("String", "NEWS_API_KEY", "\"b68a51d8bc264a648fb1de984513829c\"")
+        buildConfigField("String", "NEWS_API_BASE_URL", "\"https://newsapi.org/v2/\"")
     }
 
     buildTypes {
@@ -69,6 +69,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.okhttp.logging.interceptor)
     implementation(libs.jakarta.inject)
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
@@ -82,5 +83,7 @@ dependencies {
     implementation(project(":newsapi"))
     implementation(project(":data"))
     implementation(project(":database"))
+    implementation(project(":news-common"))
+    implementation(project(":features:news-main"))
 
 }

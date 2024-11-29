@@ -3,7 +3,7 @@ package com.example.newsapi.util
 import okhttp3.Interceptor
 import okhttp3.Response
 
-internal class ApiKeyInterceptor(private val apiKey: String) : Interceptor {
+class ApiKeyInterceptor(private val apiKey: String) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         return chain.proceed(
             chain.request().newBuilder()

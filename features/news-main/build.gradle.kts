@@ -60,6 +60,7 @@ dependencies {
     ksp(libs.dagger.hilt.compiler)
 
     implementation(project(":data"))
+    implementation(project(":news-common"))
 
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)

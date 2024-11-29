@@ -4,6 +4,7 @@ import  com.example.data.RequestResult.Success
 import  com.example.data.RequestResult.Error
 import  com.example.data.RequestResult.InProgress
 import  com.example.data.RequestResult.Ignore
+import com.example.news_common.AndroidLogCatLogger
 
 public interface MergeStrategy<E> {
 
@@ -19,6 +20,7 @@ class RequestResponseMergeStrategy<T: Any> : MergeStrategy<RequestResult<T>> {
         local: RequestResult<T>,
         remote: RequestResult<T>
     ): RequestResult<T> {
+
         return when {
 
             local is Success && remote is InProgress -> mergeRequests(local, remote)

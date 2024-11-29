@@ -16,7 +16,7 @@ internal class NewsMainViewModel @Inject constructor(
     getAllArticlesUseCase: Provider<GetAllArticlesUseCase>
 ) : ViewModel() {
 
-    val state: StateFlow<State> = getAllArticlesUseCase.get().invoke()
+    val state: StateFlow<State> = getAllArticlesUseCase.get().invoke(query = "stalker 2")
         .map { it.toSate() }
         .stateIn(viewModelScope, SharingStarted.Lazily, State.None)
 
@@ -35,7 +35,7 @@ private fun RequestResult<List<ArticleUI>>.toSate(): State {
     }
 }
 
-sealed class State {
+internal sealed class State {
 
     data object None : State()
     class Loading(val articles: List<ArticleUI>? = null) : State()
