@@ -50,6 +50,8 @@ dependencies {
     implementation(libs.androidx.viewmodel.ktx)
     implementation(libs.androidx.viewmodel.compose)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.coil.compose)
+    implementation(libs.coil.okhttp)
 
     implementation(libs.jakarta.inject)
     implementation(libs.dagger.hilt.android)

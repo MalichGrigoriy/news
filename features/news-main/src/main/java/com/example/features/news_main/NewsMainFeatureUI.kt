@@ -3,11 +3,15 @@ package com.example.features.news_main
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -17,15 +21,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil3.compose.AsyncImage
+import coil3.compose.AsyncImagePainter
 import com.example.news_uikit.NewsTheme
 
 @Composable
@@ -77,7 +89,7 @@ internal fun DrawError() {
 @Composable
 @Preview
 internal fun DrawLoading() {
-        LinearProgressIndicator(Modifier.fillMaxWidth())
+    LinearProgressIndicator(Modifier.fillMaxWidth())
 }
 
 @Composable
@@ -95,7 +107,13 @@ private fun DrawArticles(articleList: List<ArticleUI>) {
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
-        item { Spacer(Modifier.height(8.dp).fillMaxWidth()) }
+        item {
+            Spacer(
+                Modifier
+                    .height(8.dp)
+                    .fillMaxWidth()
+            )
+        }
         items(articleList) { article ->
             key(article.id) {
                 ArticleItem(article)
@@ -106,18 +124,41 @@ private fun DrawArticles(articleList: List<ArticleUI>) {
 
 @Composable
 internal fun ArticleItem(article: ArticleUI) {
-    Column(Modifier.padding(8.dp)) {
-        Text(
-            text = article.title ?: "NO TITLE",
-            style = NewsTheme.typography.headlineMedium,
-            maxLines = 1
-        )
-        Spacer(Modifier.size(4.dp))
-        Text(
-            text = article.description ?: "show more...",
-            style = NewsTheme.typography.bodyMedium,
-            maxLines = 3
-        )
+    Row(Modifier.padding(8.dp)) {
+
+        article.imageUrl?.let {
+            var isImageVisible by remember { mutableStateOf(true) }
+            Spacer(Modifier.size(4.dp))
+
+            if (isImageVisible) {
+                AsyncImage(
+                    modifier = Modifier
+                        .size(150.dp),
+                    model = it,
+                    contentScale = ContentScale.Crop,
+                    contentDescription = null,
+                    onState = { state: AsyncImagePainter.State ->
+                        if (state is AsyncImagePainter.State.Error) isImageVisible = false
+                    }
+                )
+            }
+        }
+
+        Column(Modifier.padding(start = 8.dp)) {
+            Text(
+                modifier = Modifier.padding(vertical = 2.dp),
+                text = article.title ?: "NO TITLE",
+                style = NewsTheme.typography.headlineSmall,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+            Text(
+                text = article.description ?: "show more...",
+                style = NewsTheme.typography.bodyMedium,
+                maxLines = 3
+            )
+            Spacer(Modifier.size(8.dp))
+        }
     }
 }
 
@@ -139,7 +180,7 @@ private val articleList = listOf(
         id = 1,
         title = "First news title",
         description = "first news long description",
-        imageUrl = null,
+        imageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/8f/Example_image.svg",
         url = ""
     ), ArticleUI(
         id = 2,
