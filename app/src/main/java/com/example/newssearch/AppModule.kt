@@ -3,10 +3,10 @@ package com.example.newssearch
 import android.content.Context
 import com.example.database.NewsDataBase
 import com.example.database.createNewsDataBase
-import com.example.news_common.AndroidLogCatLogger
-import com.example.news_common.AppDispatchers
-import com.example.news_common.Logger
-import com.example.newsapi.NewsApi
+import com.example.common.AndroidLogCatLogger
+import com.example.common.AppDispatchers
+import com.example.common.Logger
+import com.example.api.NewsApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
