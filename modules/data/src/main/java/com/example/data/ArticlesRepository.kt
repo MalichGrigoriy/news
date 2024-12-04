@@ -1,14 +1,14 @@
 package com.example.data
 
+import com.example.api.NewsApi
+import com.example.api.models.ArticleDTO
+import com.example.api.models.ResponseDTO
+import com.example.common.Logger
 import com.example.data.model.Article
 import com.example.data.model.toArticle
 import com.example.data.model.toArticleDBO
 import com.example.database.NewsDataBase
 import com.example.database.models.ArticleDBO
-import com.example.common.Logger
-import com.example.api.NewsApi
-import com.example.api.models.ArticleDTO
-import com.example.api.models.ResponseDTO
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -26,13 +26,15 @@ class ArticlesRepository @Inject constructor(
     private val api: NewsApi,
     private val logger: Logger
 ) {
-    private val LOG_TAG = "ArticlesRepositoryLogTag"
+
+    companion object {
+        const val LOG_TAG = "ArticlesRepositoryLogTag"
+    }
 
     fun getAll(
         query: String,
         mergeStrategy: RequestResponseMergeStrategy<List<Article>> = RequestResponseMergeStrategy()
     ): Flow<RequestResult<List<Article>>> {
-
         val cachedAllArticles: Flow<RequestResult<List<Article>>> = getCachedAllArticles()
         val remoteArticles: Flow<RequestResult<List<Article>>> = getRemoteArticles(query)
 
@@ -85,10 +87,9 @@ class ArticlesRepository @Inject constructor(
                 RequestResult.Error<List<Article>>(error = error)
                 logger.e(LOG_TAG, "Error getting from database = ", error)
             }
-
     }
 
-
+    @Suppress("UnusedParameter")
     suspend fun search(query: String): Flow<Article> {
         TODO()
     }

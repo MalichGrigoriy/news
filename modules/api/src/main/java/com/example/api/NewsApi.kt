@@ -17,10 +17,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import java.util.Date
 
-
 interface NewsApi {
 
     @GET("everything")
+    @Suppress("LongParameterList")
     suspend fun everything(
         @Query("q") query: String? = null,
         @Query("from") from: Date? = null,
@@ -29,7 +29,7 @@ interface NewsApi {
         @Query("sortBy") sortBy: SortByDTO? = null,
         @Query("pageSize") @IntRange(from = 0, to = 100) pageSize: Int = 100,
         @Query("page") @IntRange(from = 1) page: Int = 1,
-    ): Result<ResponseDTO<ArticleDTO>> //todo
+    ): Result<ResponseDTO<ArticleDTO>> // todo
 }
 
 fun NewsApi(
@@ -48,7 +48,6 @@ internal fun retrofit(
     okHttpClient: OkHttpClient,
     json: Json,
 ): Retrofit {
-
     val contentType = "application/json".toMediaType()
 
     val modifiedOkHttpClient =

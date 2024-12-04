@@ -17,9 +17,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             NewsTheme {
-                Surface (
+                Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color =  MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background
                 ) {
                     NewsMainScreen()
                 }

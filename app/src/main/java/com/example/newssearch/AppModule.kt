@@ -1,12 +1,12 @@
 package com.example.newssearch
 
 import android.content.Context
-import com.example.database.NewsDataBase
-import com.example.database.createNewsDataBase
-import com.example.common.AndroidLogCatLogger
+import com.example.api.NewsApi
 import com.example.common.AppDispatchers
 import com.example.common.Logger
-import com.example.api.NewsApi
+import com.example.common.androidLogCatLogger
+import com.example.database.NewsDataBase
+import com.example.database.createNewsDataBase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,8 +22,7 @@ object AppModule {
     @Provides
     @Singleton
     fun provideNewsApi(okHttpClient: OkHttpClient): NewsApi {
-
-        //todo or add to dagger graph
+        // todo or add to dagger graph
         return NewsApi(
             baseUrl = BuildConfig.NEWS_API_BASE_URL,
             apiKey = BuildConfig.NEWS_API_KEY,
@@ -42,7 +41,5 @@ object AppModule {
     fun provideDispatcher(): AppDispatchers = AppDispatchers()
 
     @Provides
-    fun provideLogger(): Logger = AndroidLogCatLogger()
-
-
+    fun provideLogger(): Logger = androidLogCatLogger()
 }

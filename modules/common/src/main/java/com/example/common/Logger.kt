@@ -7,7 +7,7 @@ interface Logger {
     fun e(tag: String, message: String, tr: Throwable?)
 }
 
-fun AndroidLogCatLogger() = object : Logger {
+fun androidLogCatLogger() = object : Logger {
     override fun d(tag: String, message: String) {
         Log.d(tag, message)
     }

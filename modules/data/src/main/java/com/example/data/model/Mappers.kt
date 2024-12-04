@@ -1,9 +1,9 @@
 package com.example.data.model
 
-import com.example.database.models.ArticleDBO
-import com.example.database.models.SourceDBO
 import com.example.api.models.ArticleDTO
 import com.example.api.models.SourceDTO
+import com.example.database.models.ArticleDBO
+import com.example.database.models.SourceDBO
 
 fun ArticleDBO.toArticle(): Article {
     return Article(

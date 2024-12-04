@@ -25,7 +25,6 @@ internal class NewsMainViewModel @Inject constructor(
     }
 }
 
-
 private fun RequestResult<List<ArticleUI>>.toSate(): State {
     return when (this) {
         is RequestResult.Error -> State.Error(this.data)

@@ -8,13 +8,12 @@ import androidx.room.TypeConverters
 import com.example.database.dao.ArticleDAO
 import com.example.database.models.ArticleDBO
 
-
 class NewsDataBase internal constructor(private val dataBase: NewsRoomDataBase) {
-      val articlesDao: ArticleDAO
+    val articlesDao: ArticleDAO
         get() = dataBase.articlesDao()
 }
 
-@Database(entities = [ArticleDBO::class], version = 1, exportSchema = false )
+@Database(entities = [ArticleDBO::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 internal abstract class NewsRoomDataBase : RoomDatabase() {
     abstract fun articlesDao(): ArticleDAO

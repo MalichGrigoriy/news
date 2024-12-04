@@ -2,9 +2,8 @@ package com.example.api
 
 import com.example.api.util.DateSerializer
 import kotlinx.serialization.json.Json
+import org.junit.Assert.assertEquals
 import org.junit.Test
-
-import org.junit.Assert.*
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone

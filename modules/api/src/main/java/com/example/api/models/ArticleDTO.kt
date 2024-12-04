@@ -1,8 +1,8 @@
 package com.example.api.models
 
 import com.example.api.util.DateSerializer
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 import java.util.Date
 
 @Serializable

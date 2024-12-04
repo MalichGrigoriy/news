@@ -19,13 +19,13 @@ import androidx.compose.runtime.key
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.uikit.NewsTheme
+import com.example.uikit.RedTransparent
 
 @Composable
 fun NewsMainStateScreen() {
@@ -57,7 +57,7 @@ internal fun DrawErrorState(
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         NewsTheme.colorScheme.error,
-                        Color(0x00FF0000)
+                        RedTransparent,
                     )
                 )
             )
@@ -89,7 +89,6 @@ internal fun DrawLoadingState(
             .wrapContentHeight(),
         contentAlignment = Alignment.Center
     ) {
-
         Text(
             text = "Loading",
             color = NewsTheme.colorScheme.onError,
@@ -147,25 +146,6 @@ internal fun ArticleItemState(article: ArticleUI) {
     }
 }
 
-private class ArticlePreviewProviderState : PreviewParameterProvider<ArticleUI?> {
-    override val values: Sequence<ArticleUI?>
-        get() = sequenceOf(
-            ArticleUI(
-                id = 1,
-                title = "First news title",
-                description = "first news long description",
-                imageUrl = null,
-                url = ""
-            ), ArticleUI(
-                id = 2,
-                title = "Second news title",
-                description = "second news long description",
-                imageUrl = null,
-                url = ""
-            )
-        )
-}
-
 private class ArticleListPreviewProviderState : PreviewParameterProvider<List<ArticleUI>> {
     override val values: Sequence<List<ArticleUI>>
         get() = sequenceOf(
@@ -176,7 +156,8 @@ private class ArticleListPreviewProviderState : PreviewParameterProvider<List<Ar
                     description = "first news long description",
                     imageUrl = null,
                     url = ""
-                ), ArticleUI(
+                ),
+                ArticleUI(
                     id = 2,
                     title = "Second news title",
                     description = "second news long description",

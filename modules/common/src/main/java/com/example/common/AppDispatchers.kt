@@ -10,5 +10,5 @@ open class AppDispatchers(
     val main: MainCoroutineDispatcher = Dispatchers.Main,
     val unconfined: CoroutineDispatcher = Dispatchers.Unconfined,
 ) {
-    companion object: AppDispatchers()
+    companion object : AppDispatchers()
 }

@@ -6,7 +6,7 @@ const val ID_NONE: Long = 0L
 
 data class Article(
     var cacheId: Long = ID_NONE,
-    var source : Source?,
+    var source: Source?,
     var author: String?,
     var title: String?,
     var description: String?,

@@ -24,7 +24,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +34,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
 import com.example.uikit.NewsTheme
+import com.example.uikit.RedTransparent
 
 @Composable
 fun NewsMainScreen() {
@@ -68,7 +68,7 @@ internal fun DrawError() {
                 brush = Brush.verticalGradient(
                     colors = listOf(
                         NewsTheme.colorScheme.error,
-                        Color(0x00FF0000)
+                        RedTransparent
                     )
                 )
             )
@@ -121,7 +121,6 @@ private fun DrawArticles(articleList: List<ArticleUI>) {
 @Composable
 internal fun ArticleItem(article: ArticleUI) {
     Row(Modifier.padding(8.dp)) {
-
         article.imageUrl?.let {
             var isImageVisible by remember { mutableStateOf(true) }
             Spacer(Modifier.size(4.dp))
@@ -166,11 +165,6 @@ private class StatePreviewProvider : PreviewParameterProvider<State> {
         )
 }
 
-private class ArticleListPreviewProvider : PreviewParameterProvider<List<ArticleUI>> {
-    override val values: Sequence<List<ArticleUI>>
-        get() = sequenceOf(articleList)
-}
-
 private val articleList = listOf(
     ArticleUI(
         id = 1,
@@ -178,7 +172,8 @@ private val articleList = listOf(
         description = "first news long description",
         imageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/8f/Example_image.svg",
         url = ""
-    ), ArticleUI(
+    ),
+    ArticleUI(
         id = 2,
         title = "Second news title",
         description = "second news long description",

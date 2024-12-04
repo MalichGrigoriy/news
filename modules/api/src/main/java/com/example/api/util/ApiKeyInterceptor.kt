@@ -11,5 +11,4 @@ class ApiKeyInterceptor(private val apiKey: String) : Interceptor {
                 .build()
         )
     }
-
 }

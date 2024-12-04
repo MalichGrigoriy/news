@@ -33,7 +33,7 @@ private val LightColorScheme = lightColorScheme(
     onTertiary = Color.White,
     onBackground = Color(0xFF1C1B1F),
     onSurface = Color(0xFF1C1B1F),
-    */
+     */
 )
 
 @Composable
@@ -63,11 +63,14 @@ fun NewsTheme(
 object NewsTheme {
 
     val colorScheme: ColorScheme
-        @Composable @ReadOnlyComposable get() = MaterialTheme.colorScheme
+        @Composable
+        @ReadOnlyComposable get() = MaterialTheme.colorScheme
 
     val typography: Typography
-        @Composable @ReadOnlyComposable get() = MaterialTheme.typography
+        @Composable
+        @ReadOnlyComposable get() = MaterialTheme.typography
 
     val shapes: Shapes
-        @Composable @ReadOnlyComposable get() = MaterialTheme.shapes
+        @Composable
+        @ReadOnlyComposable get() = MaterialTheme.shapes
 }

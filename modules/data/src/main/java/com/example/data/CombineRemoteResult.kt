@@ -1,17 +1,14 @@
 package com.example.data
 
-import android.os.SystemClock
-import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
-fun <T: Any> Flow<RequestResult<*>>.combineResultData(
+fun <T : Any> Flow<RequestResult<*>>.combineResultData(
     other: Flow<T>
 ): Flow<RequestResult<T>> = flow {
-
     val firstLatest = MutableStateFlow<RequestResult<*>?>(null)
     val secondLatest = MutableStateFlow<T?>(null)
     var waitForSuccess: Boolean = false
@@ -20,7 +17,7 @@ fun <T: Any> Flow<RequestResult<*>>.combineResultData(
         launch {
             this@combineResultData.collect { value ->
                 firstLatest.value = value
-                secondLatest.value?.let {  secondLatestValue ->
+                secondLatest.value?.let { secondLatestValue ->
                     when (value) {
                         is RequestResult.InProgress<*> -> emit(RequestResult.InProgress(secondLatestValue))
                         is RequestResult.Error<*> -> emit(RequestResult.Error(secondLatestValue))

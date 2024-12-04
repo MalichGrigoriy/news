@@ -8,7 +8,7 @@ import java.util.Date
 
 @Entity(tableName = "articles")
 data class ArticleDBO(
-    @PrimaryKey (autoGenerate = true) val id: Long = 0L,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     @Embedded(prefix = "source-") var source: SourceDBO? = null,
     @ColumnInfo("author") var author: String? = null,
     @ColumnInfo("title") var title: String? = null,
