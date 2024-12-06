@@ -1,8 +1,0 @@
-name: quality check
-run-name: ${{ github.actor }} Check code quality with linter
-on: [push]
-jobs:
-    Detekt:
-        runs-on: ubuntu-latest
-        steps:
-            - run: .gradlew :detekt
