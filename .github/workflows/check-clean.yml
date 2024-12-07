@@ -37,8 +37,8 @@ jobs:
         with:
           cache-disabled: true
           
-      - name: Make gradlew executable
-        run: chmod +x ./gradlew
+      # - name: Make gradlew executable
+      #   run: chmod +x ./gradlew
 
       - name: Detekt
         run: ./gradlew detekt
