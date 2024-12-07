@@ -36,6 +36,9 @@ jobs:
       - uses: gradle/actions/setup-gradle@v3
         with:
           cache-disabled: true
+          
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
       - name: Detekt
         shell: bash
