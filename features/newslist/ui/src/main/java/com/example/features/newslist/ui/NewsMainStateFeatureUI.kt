@@ -17,9 +17,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.features.newslist.logic.ArticleUI
-import com.example.features.newslist.logic.NewsMainViewModel
-import com.example.features.newslist.logic.State
+import com.example.features.domain.newslist.ArticleUI
+import com.example.features.domain.newslist.NewsMainViewModel
+import com.example.features.domain.newslist.State
 import com.example.uikit.NewsTheme
 import com.example.uikit.RedTransparent
 

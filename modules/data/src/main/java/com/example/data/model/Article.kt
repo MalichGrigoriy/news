@@ -2,9 +2,9 @@ package com.example.data.model
 
 import java.util.Date
 
-const val ID_NONE: Long = 0L
+public const val ID_NONE: Long = 0L
 
-data class Article(
+public data class Article(
     var cacheId: Long = ID_NONE,
     var source: Source?,
     var author: String?,

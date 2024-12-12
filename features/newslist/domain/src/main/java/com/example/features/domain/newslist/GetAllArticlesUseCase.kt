@@ -1,4 +1,4 @@
-package com.example.features.newslist.logic
+package com.example.features.domain.newslist
 
 import com.example.data.ArticlesRepository
 import com.example.data.RequestResult
@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-internal class GetAllArticlesUseCase @Inject constructor(private val repository: ArticlesRepository) {
+public class GetAllArticlesUseCase @Inject constructor(private val repository: ArticlesRepository) {
 
-    operator fun invoke(query: String): Flow<RequestResult<List<ArticleUI>>> {
+    internal operator fun invoke(query: String): Flow<RequestResult<List<ArticleUI>>> {
         return repository.getAll(query).map { requestResult: RequestResult<List<Article>> ->
             requestResult.copy { article: List<Article> ->
                 article.map { it.toArticleUI() }
@@ -18,7 +18,7 @@ internal class GetAllArticlesUseCase @Inject constructor(private val repository:
         }
     }
 
-    fun fetchLatest() {
+    internal fun fetchLatest() {
         // TODO repository.fetchLatest()
     }
 }

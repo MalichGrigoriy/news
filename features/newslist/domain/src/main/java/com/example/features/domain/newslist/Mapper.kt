@@ -1,4 +1,4 @@
-package com.example.features.newslist.logic
+package com.example.features.domain.newslist
 
 import com.example.data.RequestResult
 import com.example.data.model.Article

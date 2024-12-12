@@ -1,6 +1,6 @@
 package com.example.data.model
 
-data class Source(
+public data class Source(
     var id: String? = null,
     var name: String? = null
 )

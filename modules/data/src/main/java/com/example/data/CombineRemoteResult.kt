@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
-fun <T : Any> Flow<RequestResult<*>>.combineResultData(
+internal fun <T : Any> Flow<RequestResult<*>>.combineResultData(
     other: Flow<T>
 ): Flow<RequestResult<T>> = flow {
     val firstLatest = MutableStateFlow<RequestResult<*>?>(null)

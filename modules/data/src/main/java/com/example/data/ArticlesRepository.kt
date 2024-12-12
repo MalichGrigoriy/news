@@ -9,7 +9,6 @@ import com.example.data.model.toArticle
 import com.example.data.model.toArticleDBO
 import com.example.database.NewsDataBase
 import com.example.database.models.ArticleDBO
-import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
@@ -21,19 +20,19 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.withIndex
 
-class ArticlesRepository @Inject constructor(
+public class ArticlesRepository(
     private val database: NewsDataBase,
     private val api: NewsApi,
     private val logger: Logger
 ) {
 
-    companion object {
+    private companion object {
         const val LOG_TAG = "ArticlesRepositoryLogTag"
     }
 
-    fun getAll(
+    public fun getAll(
         query: String,
-        mergeStrategy: RequestResponseMergeStrategy<List<Article>> = RequestResponseMergeStrategy()
+        mergeStrategy: MergeStrategy<RequestResult<List<Article>>> = RequestResponseMergeStrategy()
     ): Flow<RequestResult<List<Article>>> {
         val cachedAllArticles: Flow<RequestResult<List<Article>>> = getCachedAllArticles()
         val remoteArticles: Flow<RequestResult<List<Article>>> = getRemoteArticles(query)
@@ -90,19 +89,19 @@ class ArticlesRepository @Inject constructor(
     }
 
     @Suppress("UnusedParameter")
-    suspend fun search(query: String): Flow<Article> {
+    public suspend fun search(query: String): Flow<Article> {
         TODO()
     }
 }
 
-sealed class RequestResult<out E : Any>(open val data: E? = null) {
-    class InProgress<E : Any>(data: E?) : RequestResult<E>(data)
-    class Success<E : Any>(override val data: E) : RequestResult<E>(data)
-    class Error<E : Any>(data: E? = null, val error: Throwable? = null) : RequestResult<E>(data)
-    class Ignore<E : Any> : RequestResult<E>()
+public sealed class RequestResult<out E : Any>(public open val data: E? = null) {
+    public class InProgress<E : Any>(data: E?) : RequestResult<E>(data)
+    public class Success<E : Any>(override val data: E) : RequestResult<E>(data)
+    public class Error<E : Any>(data: E? = null, public val error: Throwable? = null) : RequestResult<E>(data)
+    public class Ignore<E : Any> : RequestResult<E>()
 }
 
-fun <I : Any, O : Any> RequestResult<I>.copy(mapper: (I) -> O): RequestResult<O> {
+public fun <I : Any, O : Any> RequestResult<I>.copy(mapper: (I) -> O): RequestResult<O> {
     return when (this) {
         is RequestResult.Error -> RequestResult.Error(data = data?.let(mapper), error = error)
         is RequestResult.InProgress -> RequestResult.InProgress(data = data?.let(mapper))
@@ -111,7 +110,7 @@ fun <I : Any, O : Any> RequestResult<I>.copy(mapper: (I) -> O): RequestResult<O>
     }
 }
 
-internal fun <T : Any> Result<T>.toRequestResult(): RequestResult<T> {
+private fun <T : Any> Result<T>.toRequestResult(): RequestResult<T> {
     return when {
         isSuccess -> RequestResult.Success(getOrThrow())
         isFailure -> RequestResult.Error<T>(error = this.exceptionOrNull())

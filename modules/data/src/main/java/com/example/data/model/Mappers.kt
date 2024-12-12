@@ -5,7 +5,7 @@ import com.example.api.models.SourceDTO
 import com.example.database.models.ArticleDBO
 import com.example.database.models.SourceDBO
 
-fun ArticleDBO.toArticle(): Article {
+internal fun ArticleDBO.toArticle(): Article {
     return Article(
         cacheId = id,
         source = source?.toSource(),
@@ -19,7 +19,7 @@ fun ArticleDBO.toArticle(): Article {
     )
 }
 
-fun ArticleDTO.toArticleDBO(): ArticleDBO {
+internal fun ArticleDTO.toArticleDBO(): ArticleDBO {
     return ArticleDBO(
         source = source?.toSourceDBO(),
         author = author,
@@ -32,7 +32,7 @@ fun ArticleDTO.toArticleDBO(): ArticleDBO {
     )
 }
 
-fun ArticleDTO.toArticle(): Article {
+internal fun ArticleDTO.toArticle(): Article {
     return Article(
         source = source?.toSource(),
         author = author,

@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.uikit"
-    compileSdk = 34
+    compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_21

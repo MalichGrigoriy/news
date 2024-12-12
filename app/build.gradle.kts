@@ -8,12 +8,12 @@ plugins {
 
 android {
     namespace = "com.example.newssearch"
-    compileSdk = 35
+    compileSdk = libs.versions.androidSdk.compile.get().toInt()
 
     defaultConfig {
         applicationId = "com.example.newssearch"
-        minSdk = 24
-        targetSdk = 34
+        minSdk = libs.versions.androidSdk.min.get().toInt()
+        targetSdk = libs.versions.androidSdk.target.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -65,7 +65,7 @@ dependencies {
 
     debugImplementation(libs.okhttp.logging.interceptor)
 
-    implementation(libs.jakarta.inject)
+//    implementation(libs.jakarta.inject)
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
 
@@ -74,11 +74,11 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
-    implementation(project(":modules:api"))
 
-    implementation(project(":modules:data"))
-    implementation(project(":modules:database"))
-    implementation(project(":modules:common"))
-    implementation(project(":features:newslist"))
-    implementation(project(":modules:uikit"))
+    implementation(projects.modules.api)
+    implementation(projects.modules.data)
+    implementation(projects.modules.database)
+    implementation(projects.modules.common)
+    implementation(projects.features.newslist.ui)
+    implementation(projects.modules.uikit)
 }

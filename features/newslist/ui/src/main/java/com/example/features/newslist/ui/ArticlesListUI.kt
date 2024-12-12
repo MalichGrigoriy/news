@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import coil3.compose.AsyncImagePainter
-import com.example.features.newslist.logic.ArticleUI
+import com.example.features.domain.newslist.ArticleUI
 import com.example.uikit.NewsTheme
 
 @Composable

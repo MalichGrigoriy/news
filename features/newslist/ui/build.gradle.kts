@@ -2,8 +2,6 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
 }
 
 android {
@@ -52,11 +50,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.okhttp)
 
-    implementation(libs.jakarta.inject)
-    implementation(libs.dagger.hilt.android)
-    ksp(libs.dagger.hilt.compiler)
-
-    implementation(project(":modules:data"))
-    implementation(project(":modules:common"))
-    implementation(project(":modules:uikit"))
+    implementation(projects.modules.common)
+    implementation(projects.modules.uikit)
+    implementation(projects.features.newslist.domain)
 }

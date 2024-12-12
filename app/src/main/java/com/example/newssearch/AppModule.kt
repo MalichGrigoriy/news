@@ -5,6 +5,7 @@ import com.example.api.NewsApi
 import com.example.common.AppDispatchers
 import com.example.common.Logger
 import com.example.common.androidLogCatLogger
+import com.example.data.ArticlesRepository
 import com.example.database.NewsDataBase
 import com.example.database.createNewsDataBase
 import dagger.Module
@@ -34,6 +35,20 @@ object AppModule {
     @Singleton
     fun provideNewsDataBase(@ApplicationContext context: Context): NewsDataBase {
         return createNewsDataBase(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideArticlesRepository(
+        dataBase: NewsDataBase,
+        api: NewsApi,
+        logger: Logger
+    ): ArticlesRepository {
+        return ArticlesRepository(
+            database = dataBase,
+            api = api,
+            logger = logger
+        )
     }
 
     @Provides

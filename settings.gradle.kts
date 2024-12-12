@@ -1,3 +1,5 @@
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         google {
@@ -23,7 +25,8 @@ rootProject.name = "NewsSearch"
 include(":app")
 include(":modules:api")
 include(":modules:database")
-include(":features:newslist")
+include(":features:newslist:ui")
+include(":features:newslist:domain")
 include(":modules:data")
 include(":modules:common")
 include(":modules:uikit")

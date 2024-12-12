@@ -2,12 +2,12 @@ package com.example.common
 
 import android.util.Log
 
-interface Logger {
-    fun d(tag: String, message: String)
-    fun e(tag: String, message: String, tr: Throwable?)
+public interface Logger {
+    public fun d(tag: String, message: String)
+    public fun e(tag: String, message: String, tr: Throwable?)
 }
 
-fun androidLogCatLogger() = object : Logger {
+public fun androidLogCatLogger(): Logger = object : Logger {
     override fun d(tag: String, message: String) {
         Log.d(tag, message)
     }
