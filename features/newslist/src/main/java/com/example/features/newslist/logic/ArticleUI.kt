@@ -1,6 +1,6 @@
-package com.example.features.newslist
+package com.example.features.newslist.logic
 
-internal class ArticleUI(
+class ArticleUI(
     val id: Long?,
     val title: String?,
     val description: String?,

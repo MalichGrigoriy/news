@@ -1,4 +1,4 @@
-package com.example.features.newslist
+package com.example.features.newslist.logic
 
 import com.example.data.ArticlesRepository
 import com.example.data.RequestResult
@@ -19,16 +19,6 @@ internal class GetAllArticlesUseCase @Inject constructor(private val repository:
     }
 
     fun fetchLatest() {
-// TODO       repository.fetchLatest()
+        // TODO repository.fetchLatest()
     }
-}
-
-private fun Article.toArticleUI(): ArticleUI {
-    return ArticleUI(
-        id = this.cacheId,
-        title = this.title,
-        description = this.description,
-        imageUrl = this.urlToImage,
-        url = this.url,
-    )
 }
